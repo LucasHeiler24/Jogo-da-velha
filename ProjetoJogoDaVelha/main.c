@@ -18,7 +18,7 @@ void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //nao coloca o valor de linh
 }
 void main()
 {
-    int vezX = 1, vezO = 0;
+    int vezX = 1, jogadaX = 0, vezO = 0, jogadaO = 0;
     char tabuleiro[3][3]={
       {' ', ' ', ' '},
       {' ', ' ', ' '},
@@ -31,5 +31,8 @@ void main()
 
     exibirTabuleiroComLinhas(tabuleiro);
 
-
+    if(vezX = 1){
+        printf("Jogador X, escolha a coluna de A a C: ");
+        scanf(" %d", )
+    }
 }
