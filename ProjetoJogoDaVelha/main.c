@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //nao coloca o valor de linhas no tabuleiro para a funcao
+void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //não coloca o valor de linhas no tabuleiro para a função
     int i, j;
 
     for(i=0;i<3;i++){
         for(j=0;j<3;j++){
             printf("%c ", tabuleiro[i][j]);
-            if(j!=2){ //essa logica indica as colunas que irao ter o '|', pois eu quero que so tenha em duas colunas
+            if(j!=2){ //essa lógica indica as colunas que irão ter o '|', pois eu quero que so tenha em duas colunas
                 printf("|");
             }
         }
             printf("\n");
-            if(i!=2){ //essa logica indica as colunas que irao ter o '-', pois eu quero que so tenha em duas linhas
+            if(i!=2){ //essa lógica indica as colunas que irão ter o '-', pois eu quero que so tenha em duas linhas
                 printf("---------\n");
             }
     }
@@ -20,7 +20,7 @@ void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //nao coloca o valor de linh
 
 //Função para verificar se algum jogador ganhou
 int checagemDeVitoria(char tabuleiro[][3], char jogador){
-    int i = 0, checagem = 0;
+    int i = 0;
 
     //Verifica as linhas
     for(i = 0; i = 3; i++){
@@ -60,12 +60,12 @@ int checagemDeVitoria(char tabuleiro[][3], char jogador){
             }
         }
     }
-    return NULL;
+    return 2;
 }
 int main()
 {
     //Declaração de variáveis
-    int jogadorAtual = 1, linha = 0;
+    int jogadorAtual = 1, linha = 0, checagem;
     char tabuleiro[3][3]={
       {' ', ' ', ' '},
       {' ', ' ', ' '},
@@ -78,7 +78,7 @@ int main()
 
     exibirTabuleiroComLinhas(tabuleiro);
 
-    while(checagemDeVitoria != 1 || checagemDeVitoria != 0){
+    while(checagem != 0 || checagem != 1){
     //Vez do jogador X
     if(jogadorAtual = 1){
 
@@ -88,15 +88,14 @@ int main()
         printf("\n");
 
         //Escolha da linha
-        printf("Jogador O, escolha a linha de 0 a 2: ");
+        printf("Jogador X, escolha a linha de 1 a 3: ");
         scanf(" %d", &linha);
         printf("\n");
 
         //Validação: Valor Inválido
 
-        /*
-        while(linha < 1 || linha > 4 || coluna < 65 ||
-              coluna > 67 && coluna < 97 || coluna > 99){
+
+        while(linha < 1 || linha > 3){
 
             exibirTabuleiroComLinhas(tabuleiro);
 
@@ -106,11 +105,9 @@ int main()
             scanf(" %s", &coluna);
             printf("\n");
 
-            printf("Jogador X, escolha a linha de 0 a 2: ");
+            printf("Jogador X, escolha a linha de 1 a 3: ");
             scanf(" %d", &linha);
             printf("\n");
-
-            */ //Arrumar
 
 
 
@@ -175,7 +172,7 @@ int main()
             scanf(" %s", &coluna);
             printf("\n");
 
-            printf("Jogador O, escolha a linha de 0 a 2: ");
+            printf("Jogador O, escolha a linha de 1 a 3: ");
             scanf(" %d", &linha);
             printf("\n");
 
@@ -214,7 +211,7 @@ int main()
         exibirTabuleiroComLinhas(tabuleiro);
 
         //Chama a função para verificar a vitória
-        checagemDeVitoria(tabuleiro, 'X');
+
 
         //Passa a vez para o outro jogador
         jogadorAtual = 0;
@@ -227,7 +224,7 @@ int main()
         scanf(" %s", &coluna);
         printf("\n");
 
-        printf("Jogador O, escolha a linha de 0 a 2: ");
+        printf("Jogador O, escolha a linha de 1 a 3: ");
         scanf(" %d", &linha);
         printf("\n");
 
@@ -263,7 +260,7 @@ int main()
             scanf(" %s", &coluna);
             printf("\n");
 
-            printf("Jogador O, escolha a linha de 0 a 2: ");
+            printf("Jogador O, escolha a linha de 1 a 3: ");
             scanf(" %d", &linha);
             printf("\n");
 
@@ -290,14 +287,11 @@ int main()
             else if(coluna == 'c' || coluna == 'C'){
                 coluna= 2;
             }
-
         }
 
         tabuleiro[linha][coluna] = 'O';
 
         exibirTabuleiroComLinhas(tabuleiro);
-
-        checagemDeVitoria(tabuleiro, 'X');
 
 
         jogadorAtual = 1;
