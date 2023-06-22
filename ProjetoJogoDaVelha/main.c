@@ -38,14 +38,15 @@ int main()
 
     //Vez do jogador X
     if(jogadorAtual = 1){
-        //Escolha da linha
-        printf("Jogador X, escolha a linha de 0 a 2: ");
-        scanf(" %d", &linha);
-        printf("\n");
 
         //Escolha da coluna
         printf("Jogador X, escolha a coluna de A a C: ");
         scanf(" %s", &coluna);
+        printf("\n");
+
+        //Escolha da linha
+        printf("Jogador O, escolha a linha de 0 a 2: ");
+        scanf(" %d", &linha);
         printf("\n");
 
         //Validação: Valor Inválido
@@ -53,12 +54,12 @@ int main()
 
             printf("\nEntrada invalida, digite outro valor\n\n");
 
-            printf("Jogador X, escolha a linha de 0 a 2: ");
-            scanf(" %d", &linha);
-            printf("\n");
-
             printf("Jogador X, escolha a coluna de A a C: ");
             scanf(" %s", &coluna);
+            printf("\n");
+
+            printf("Jogador X, escolha a linha de 0 a 2: ");
+            scanf(" %d", &linha);
             printf("\n");
 
             //Converter as letras para números na validação
@@ -93,12 +94,12 @@ int main()
 
             printf("Algum jogador ja marcou esta posicao, escolha outra!\n\n");
 
-            printf("Jogador X, escolha a linha de 0 a 2: ");
-            scanf(" %d", &linha);
-            printf("\n");
-
             printf("Jogador X, escolha a coluna de A a C: ");
             scanf(" %s", &coluna);
+            printf("\n");
+
+            printf("Jogador O, escolha a linha de 0 a 2: ");
+            scanf(" %d", &linha);
             printf("\n");
 
             /*Conversão dos números para deixar mais fácil o
@@ -144,12 +145,12 @@ int main()
         //Vez do jogador O
         if(jogadorAtual == 0){
 
-        printf("Jogador O, escolha a linha de 0 a 2: ");
-        scanf(" %d", &linha);
-        printf("\n");
-
         printf("Jogador O, escolha a coluna de A a C: ");
         scanf(" %s", &coluna);
+        printf("\n");
+
+        printf("Jogador O, escolha a linha de 0 a 2: ");
+        scanf(" %d", &linha);
         printf("\n");
 
         if(coluna == 'a' || coluna == 'A'){
@@ -166,12 +167,12 @@ int main()
 
             printf("Algum jogador ja marcou esta posicao, escolha outra!\n");
 
-            printf("Jogador O, escolha a linha de 0 a 2: ");
-            scanf(" %d", &linha);
-            printf("\n");
-
             printf("Jogador O, escolha a coluna de A a C: ");
             scanf(" %s", &coluna);
+            printf("\n");
+
+            printf("Jogador O, escolha a linha de 0 a 2: ");
+            scanf(" %d", &linha);
             printf("\n");
 
             if(coluna == 'a' || coluna == 'A'){
