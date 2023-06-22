@@ -18,6 +18,7 @@ void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //nao coloca o valor de linh
 }
 void main()
 {
+    int vezX = 1, vezO = 0;
     char tabuleiro[3][3]={
       {' ', ' ', ' '},
       {' ', ' ', ' '},
@@ -26,7 +27,9 @@ void main()
 
     printf("===============================\n");
     printf("JOGO DA VELHA EM LINGUAGEM C!\n");
-    printf("===============================\n");
+    printf("===============================\n\n");
 
     exibirTabuleiroComLinhas(tabuleiro);
+
+
 }
