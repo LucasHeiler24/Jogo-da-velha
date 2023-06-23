@@ -4,8 +4,8 @@
 void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //não coloca o valor de linhas no tabuleiro para a função
     int i, j;
 
-    for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
+    for(i=0;i<=2;i++){
+        for(j=0;j<=2;j++){
             printf("%c ", tabuleiro[i][j]);
             if(j!=2){ //essa lógica indica as colunas que irão ter o '|', pois eu quero que so tenha em duas colunas
                 printf("|");
@@ -20,10 +20,10 @@ void exibirTabuleiroComLinhas(char tabuleiro[][3]){ //não coloca o valor de linh
 
 //Função para verificar se algum jogador ganhou
 int checagemDeVitoria(char tabuleiro[][3], char jogador){
-    int i = 0;
+    int i = 0, j = 0, contadorEspacos = 0;
 
     //Verifica as linhas
-    for(i = 0; i = 3; i++){
+    for(i = 0; i < 3; i++){
         if(tabuleiro[i][0] == jogador && tabuleiro[i][1] == jogador && tabuleiro[i][2] == jogador){
             if(jogador == 'X'){
                 return 1;
@@ -60,12 +60,24 @@ int checagemDeVitoria(char tabuleiro[][3], char jogador){
             }
         }
     }
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (tabuleiro[i][j] == ' ') {
+            contadorEspacos++;
+            }
+        }
+    }
+
+    if (contadorEspacos == 0) {
+        return 3;
+    }
+
     return 2;
 }
 int main()
 {
     //Declaração de variáveis
-    int jogadorAtual = 1, linha = 0, checagem;
+    int jogadorAtual = 1, linha = 0, checagem = 2;
     char tabuleiro[3][3]={
       {' ', ' ', ' '},
       {' ', ' ', ' '},
@@ -78,13 +90,14 @@ int main()
 
     exibirTabuleiroComLinhas(tabuleiro);
 
-    while(checagem != 0 || checagem != 1){
+    while(checagem == 2){
+
     //Vez do jogador X
-    if(jogadorAtual = 1){
+    if(jogadorAtual == 1){
 
         //Escolha da coluna
         printf("Jogador X, escolha a coluna de A a C: ");
-        scanf(" %s", &coluna);
+        scanf(" %c", &coluna);
         printf("\n");
 
         //Escolha da linha
@@ -93,8 +106,6 @@ int main()
         printf("\n");
 
         //Validação: Valor Inválido
-
-
         while(linha < 1 || linha > 3){
 
             exibirTabuleiroComLinhas(tabuleiro);
@@ -102,14 +113,12 @@ int main()
             printf("\nEntrada invalida, digite outro valor\n\n");
 
             printf("Jogador X, escolha a coluna de A a C: ");
-            scanf(" %s", &coluna);
+            scanf(" %c", &coluna);
             printf("\n");
 
             printf("Jogador X, escolha a linha de 1 a 3: ");
             scanf(" %d", &linha);
             printf("\n");
-
-
 
             /*Conversão dos números para deixar mais fácil o
             utilização do programa aos usuários*/
@@ -122,7 +131,7 @@ int main()
             }
 
             else if(linha == 3){
-                linha = 3;
+                linha = 2;
             }
 
             //Converter as letras para números na validação
@@ -137,10 +146,10 @@ int main()
             else if(coluna == 'c' || coluna == 'C'){
                 coluna = 2;
             }
+        } //Saída do while
 
-        }
-
-        if(linha == 1){
+            //Conversão para melhor uso do usuário
+            if(linha == 1){
                 linha = 0;
             }
 
@@ -149,7 +158,7 @@ int main()
             }
 
             else if(linha == 3){
-                linha = 3;
+                linha = 2;
             }
 
         //Converter as letras para números fora da validação
@@ -166,10 +175,12 @@ int main()
         //Validação: Se a posição tiver ocupada
         while(tabuleiro[linha][coluna] == 'O' || tabuleiro[linha][coluna] == 'X'){
 
+            exibirTabuleiroComLinhas(tabuleiro);
+
             printf("Algum jogador ja marcou esta posicao, escolha outra!\n\n");
 
             printf("Jogador X, escolha a coluna de A a C: ");
-            scanf(" %s", &coluna);
+            scanf(" %c", &coluna);
             printf("\n");
 
             printf("Jogador O, escolha a linha de 1 a 3: ");
@@ -185,7 +196,7 @@ int main()
             }
 
             else if(linha == 3){
-                linha = 3;
+                linha = 2;
             }
 
             //Conversão de letras para números na validação
@@ -201,7 +212,6 @@ int main()
                 coluna = 2;
             }
 
-            exibirTabuleiroComLinhas(tabuleiro);
         }
 
         //Colocando o X ou O no lugar escolhido pelo usuário
@@ -211,7 +221,7 @@ int main()
         exibirTabuleiroComLinhas(tabuleiro);
 
         //Chama a função para verificar a vitória
-
+        checagem = checagemDeVitoria(tabuleiro, 'X');
 
         //Passa a vez para o outro jogador
         jogadorAtual = 0;
@@ -221,49 +231,30 @@ int main()
         if(jogadorAtual == 0){
 
         printf("Jogador O, escolha a coluna de A a C: ");
-        scanf(" %s", &coluna);
+        scanf(" %c", &coluna);
         printf("\n");
 
         printf("Jogador O, escolha a linha de 1 a 3: ");
         scanf(" %d", &linha);
         printf("\n");
 
-        if(linha == 1){
-                linha = 0;
-            }
-
-            else if(linha == 2){
-                linha = 1;
-            }
-
-            else if(linha == 3){
-                linha = 3;
-            }
-
-        if(coluna == 'a' || coluna == 'A'){
-            coluna = 0;
-        }
-        if(coluna == 'b' || coluna == 'B'){
-            coluna = 1;
-        }
-        else if(coluna == 'c' || coluna == 'C'){
-            coluna = 2;
-        }
-
-        while(tabuleiro[linha][coluna] == 'X' || tabuleiro[linha][coluna] == 'O'){
+        //Validação: Valor Inválido
+        while(linha < 1 || linha > 3 || coluna != 'a' || coluna != 'b' || coluna != 'c'){ // Está errado
 
             exibirTabuleiroComLinhas(tabuleiro);
 
-            printf("Algum jogador ja marcou esta posicao, escolha outra!\n");
+            printf("\nEntrada invalida, digite outro valor\n\n");
 
             printf("Jogador O, escolha a coluna de A a C: ");
-            scanf(" %s", &coluna);
+            scanf(" %c", &coluna);
             printf("\n");
 
             printf("Jogador O, escolha a linha de 1 a 3: ");
             scanf(" %d", &linha);
             printf("\n");
 
+            /*Conversão dos números para deixar mais fácil o
+            utilização do programa aos usuários*/
             if(linha == 1){
                 linha = 0;
             }
@@ -273,7 +264,74 @@ int main()
             }
 
             else if(linha == 3){
-                linha = 3;
+                linha = 2;
+            }
+
+            //Converter as letras para números na validação
+            if(coluna == 'a' || coluna == 'A'){
+                coluna = 0;
+            }
+
+            else if(coluna == 'b' || coluna == 'B'){
+                coluna = 1;
+            }
+
+            else if(coluna == 'c' || coluna == 'C'){
+                coluna = 2;
+            }
+        } //Saída do while
+
+            //Conversões
+            if(linha == 1){
+                linha = 0;
+            }
+
+            else if(linha == 2){
+                linha = 1;
+            }
+
+            else if(linha == 3){
+                linha = 2;
+            }
+
+            if(coluna == 'a' || coluna == 'A'){
+            coluna = 0;
+            }
+
+            if(coluna == 'b' || coluna == 'B'){
+            coluna = 1;
+            }
+
+            else if(coluna == 'c' || coluna == 'C'){
+            coluna = 2;
+            }
+
+        //Validação: posição já ocupada por outro jogador
+        while(tabuleiro[linha][coluna] == 'X' || tabuleiro[linha][coluna] == 'O'){
+
+            exibirTabuleiroComLinhas(tabuleiro);
+
+            printf("Algum jogador ja marcou esta posicao, escolha outra!\n");
+
+            printf("Jogador O, escolha a coluna de A a C: ");
+            scanf(" %c", &coluna);
+            printf("\n");
+
+            printf("Jogador O, escolha a linha de 1 a 3: ");
+            scanf(" %d", &linha);
+            printf("\n");
+
+            //Conversões
+            if(linha == 1){
+                linha = 0;
+            }
+
+            else if(linha == 2){
+                linha = 1;
+            }
+
+            else if(linha == 3){
+                linha = 2;
             }
 
             if(coluna == 'a' || coluna == 'A'){
@@ -293,10 +351,24 @@ int main()
 
         exibirTabuleiroComLinhas(tabuleiro);
 
+        checagem = checagemDeVitoria(tabuleiro, 'O');
 
         jogadorAtual = 1;
 
         }
+    }
+
+    //Ao sair do laço, verificar quem foi o vencedor ou se empatou
+    if(checagem == 1){
+        printf("\n\nJogador X ganhou, Parabens!!!\n\n");
+    }
+
+    else if(checagem == 0){
+        printf("\n\nJogador O ganhou, Parabens!!!\n\n");
+    }
+
+    else{
+        printf("\n\nNenhum Jogador ganhou\n\n");
     }
         return 0;
 }
