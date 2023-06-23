@@ -43,6 +43,7 @@ int checagemDeVitoria(char tabuleiro[][3], char jogador){
             }
         }
 
+        //Verifica as diagonais
         else if(tabuleiro[0][0] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][2] == jogador){
             if(jogador == 'X'){
                 return 1;
@@ -165,9 +166,11 @@ int main()
         if(coluna == 'a' || coluna == 'A'){
             coluna = 0;
         }
+
         else if(coluna == 'b' || coluna == 'B'){
             coluna = 1;
         }
+
         else if(coluna == 'c' || coluna == 'C'){
             coluna = 2;
         }
@@ -211,7 +214,6 @@ int main()
             else if(coluna == 'c' || coluna == 'C'){
                 coluna = 2;
             }
-
         }
 
         //Colocando o X ou O no lugar escolhido pelo usuário
@@ -222,6 +224,17 @@ int main()
 
         //Chama a função para verificar a vitória
         checagem = checagemDeVitoria(tabuleiro, 'X');
+
+        //Ao sair do laço, verificar quem foi o vencedor ou se empatou
+        if(checagem == 1){
+            printf("\n\nJogador X ganhou, Parabens!!!\n\n");
+            break;
+        }
+
+        else if(checagem == 3){
+            printf("\n\nEmpate, nenhum Jogador ganhou\n\n");
+            break;
+        }
 
         //Passa a vez para o outro jogador
         jogadorAtual = 0;
@@ -239,7 +252,7 @@ int main()
         printf("\n");
 
         //Validação: Valor Inválido
-        while(linha < 1 || linha > 3 || coluna != 'a' || coluna != 'b' || coluna != 'c'){ // Está errado
+        while(linha < 1 || linha > 3){ // Está errado
 
             exibirTabuleiroComLinhas(tabuleiro);
 
@@ -353,22 +366,19 @@ int main()
 
         checagem = checagemDeVitoria(tabuleiro, 'O');
 
-        jogadorAtual = 1;
-
+        //Ao sair do laço, verificar quem foi o vencedor ou se empatou
+        if(checagem == 0){
+            printf("\n\nJogador O ganhou, Parabens!!!\n\n");
+            break;
         }
-    }
 
-    //Ao sair do laço, verificar quem foi o vencedor ou se empatou
-    if(checagem == 1){
-        printf("\n\nJogador X ganhou, Parabens!!!\n\n");
-    }
+        else if(checagem == 3){
+            printf("\n\nNenhum Jogador ganhou\n\n");
+            break;
+        }
 
-    else if(checagem == 0){
-        printf("\n\nJogador O ganhou, Parabens!!!\n\n");
-    }
-
-    else{
-        printf("\n\nNenhum Jogador ganhou\n\n");
+        jogadorAtual = 1;
+        }
     }
         return 0;
 }
